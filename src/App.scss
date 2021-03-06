@@ -1,0 +1,14 @@
+.Meal {
+  display: flex;
+  flex-direction: row;
+  border: solid;
+}
+
+.Meal img {
+  width: 50px;
+  flex: 1;
+}
+
+.Meal div {
+  flex: auto;
+}
