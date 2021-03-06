@@ -5,6 +5,17 @@ import MealList from './MealList';
 
 import meals from './meals';
 
+const SearchBar = ({ keyword }) => {
+  return (
+    <input
+      key="random1"
+      value={keyword}
+      placeholder={'search Meal'}
+      //  onChange={}
+    />
+  );
+};
+
 class App extends React.Component {
   state = {
     mealList: [],
@@ -65,6 +76,8 @@ class App extends React.Component {
       <div className="App">
         <h1>IronNutrition</h1>
         {/* <button>Add New Meal</button> */}
+
+        <SearchBar name="searchBar" input={this.keyword} />
 
         <form onSubmit={this.handleFormSubmission}>
           <input
