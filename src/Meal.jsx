@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import meals from './meals';
 
 const Meal = (props) => {
   return (

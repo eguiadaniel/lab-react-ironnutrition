@@ -1,28 +1,98 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.scss';
 import Meal from './Meal';
+import MealList from './MealList';
 
 import meals from './meals';
 
-const mealsList = meals.map((meal) => {});
+class App extends React.Component {
+  state = {
+    mealList: [],
+    newMeal: '',
+    name: '',
+    calories: '',
+    image: ''
+  };
 
-class App extends Component {
+  handleFormSubmission = (event) => {
+    event.preventDefault();
+
+    // const newMeal = { name: this.state.name, calories: this.state.calories };
+    // this.setState({
+    //   newMeal: newMeal
+    // });
+    this.setState({
+      newMeal: {
+        name: this.state.name,
+        calories: this.state.calories,
+        image: this.state.image
+      }
+    });
+    console.log(this.state.newMeal);
+  };
+
+  handleNewMealChange = (event) => {
+    // const name = event.target.name;
+
+    if (event.target.name === 'name') {
+      const name = event.target.value;
+      this.setState({
+        name: name
+      });
+    }
+
+    if (event.target.name === 'calories') {
+      const calories = event.target.value;
+      this.setState({
+        calories: calories
+      });
+    }
+
+    if (event.target.name === 'image') {
+      const image = event.target.value;
+      this.setState({
+        image: image
+      });
+    }
+
+    // console.log(event.target.name);
+    // console.log(this.state.name);
+    // console.log(this.state);
+  };
+
   render() {
     return (
-      <div>
-        <p>Sample App</p>
-        <ul>
-          {meals.map((meal) => {
-            return (
-              <Meal
-                name={meal.name}
-                calories={meal.calories}
-                quantity={meal.quantity}
-                image={meal.image}
-              />
-            );
-          })}
-        </ul>
+      <div className="App">
+        <h1>IronNutrition</h1>
+        {/* <button>Add New Meal</button> */}
+
+        <form onSubmit={this.handleFormSubmission}>
+          <input
+            name="name"
+            type="text"
+            placeholder="Meal name here"
+            onChange={this.handleNewMealChange}
+            value={this.state.name}
+          />
+          <input
+            name="calories"
+            type="number"
+            placeholder="Calories number here"
+            onChange={this.handleNewMealChange}
+            value={this.state.calories}
+          />
+          <input
+            name="image"
+            type="text"
+            placeholder="Image url"
+            onChange={this.handleNewMealChange}
+            value={this.state.image}
+          />
+
+          <button>Add Meal</button>
+        </form>
+
+        <MealList newMeal={this.state.newMeal} />
       </div>
     );
   }
