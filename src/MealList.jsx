@@ -13,8 +13,8 @@ class MealList extends React.Component {
         {newList.map((meal) => {
           return (
             <Meal
-              key={meal.name}
-              name={meal.name}
+              key={meal.title}
+              title={meal.title}
               calories={meal.calories}
               quantity={meal.quantity}
               image={meal.image}

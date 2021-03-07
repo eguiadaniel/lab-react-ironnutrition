@@ -4,9 +4,9 @@ import './App.scss';
 const Meal = (props) => {
   return (
     <div className="Meal">
-      <img src={props.image} alt={props.name} />
+      <img src={props.image} alt={props.title} />
       <div>
-        <h5>{props.name}</h5>
+        <h5>{props.title}</h5>
         <small>{props.calories}</small>
       </div>
       <form>

@@ -21,7 +21,7 @@ class App extends React.Component {
   state = {
     mealList: [],
     newMeal: '',
-    name: '',
+    title: '',
     calories: '',
     image: ''
   };

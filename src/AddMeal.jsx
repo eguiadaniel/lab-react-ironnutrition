@@ -9,7 +9,7 @@ class AddMeal extends React.Component {
   state = {
     mealList: [],
     newMeal: '',
-    name: '',
+    title: '',
     calories: '',
     image: ''
   };
@@ -19,7 +19,7 @@ class AddMeal extends React.Component {
 
     this.setState({
       newMeal: {
-        name: this.state.name,
+        title: this.state.title,
         calories: this.state.calories,
         image: this.state.image
       }
@@ -27,47 +27,29 @@ class AddMeal extends React.Component {
     console.log(this.state.newMeal);
   };
 
-  handleNewMealChange = (event) => {
-    // const name = event.target.name;
+  handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
 
-    if (event.target.name === 'name') {
-      const name = event.target.value;
-      this.setState({
-        name: name
-      });
-    }
+    this.setState({
+      [name] : value
+    })
+     
 
-    if (event.target.name === 'calories') {
-      const calories = event.target.value;
-      this.setState({
-        calories: calories
-      });
-    }
-
-    if (event.target.name === 'image') {
-      const image = event.target.value;
-      this.setState({
-        image: image
-      });
-    }
-
-    // console.log(event.target.name);
-    // console.log(this.state.name);
-    // console.log(this.state);
   };
 
   render() {
     return (
       <div className="AddMeal">
         <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor="name-input">Meal name</label>
+          <label htmlFor="title-input">Meal title</label>
           <input
-            id="name-input"
-            name="name"
+            id="title-input"
+            name="title"
             type="text"
-            placeholder="Meal name here"
-            onChange={this.handleNewMealChange}
-            value={this.state.name}
+            placeholder="Meal title here"
+            onChange={this.handleInputChange}
+            value={this.state.title}
           />
           <label htmlFor="number-input">Number of calories</label>
           <input
@@ -75,7 +57,7 @@ class AddMeal extends React.Component {
             name="calories"
             type="number"
             placeholder="Calories number here"
-            onChange={this.handleNewMealChange}
+            onChange={this.handleInputChange}
             value={this.state.calories}
           />
           <label htmlFor="image-input">Image URL</label>
@@ -84,12 +66,18 @@ class AddMeal extends React.Component {
             name="image"
             type="text"
             placeholder="Image url"
-            onChange={this.handleNewMealChange}
+            onChange={this.handleInputChange}
             value={this.state.image}
           />
 
           <button>Add Meal</button>
         </form>
+
+        <hr/>
+
+        <p>Title: {this.state.title}</p>
+        <p>Calories: {this.state.calories}</p>
+        <p>Image: {this.state.image}</p>
       </div>
     );
   }
