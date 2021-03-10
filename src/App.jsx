@@ -2,31 +2,21 @@ import React from 'react';
 import './App.scss';
 import Meal from './Meal';
 import MealList from './MealList';
-import AddMeal from './AddMeal'
+import AddMeal from './AddMeal';
 
 import meals from './meals';
 
-const SearchBar = ({ keyword }) => {
-  return (
-    <input
-      key="random1"
-      value={keyword}
-      placeholder={'search Meal'}
-      //  onChange={}
-    />
-  );
-};
-
 class App extends React.Component {
   state = {
-    mealList: [],
-    newMeal: '',
-    title: '',
-    calories: '',
-    image: ''
+    meals: meals
   };
 
-  
+  addNewMeal = (meal) => {
+    this.setState({
+      meals: [meal, ...meals]
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -35,9 +25,9 @@ class App extends React.Component {
 
         {/* <SearchBar name="searchBar" input={this.keyword} /> */}
 
-        <AddMeal />
+        <AddMeal onAddNewMeal={this.addNewMeal} />
 
-        <MealList newMeal={this.state.newMeal} />
+        <MealList meals={this.state.meals} />
       </div>
     );
   }

@@ -1,21 +1,24 @@
 import React from 'react';
 import './App.scss';
 
-const Meal = (props) => {
-  return (
-    <div className="Meal">
-      <img src={props.image} alt={props.title} />
-      <div>
-        <h5>{props.title}</h5>
-        <small>{props.calories}</small>
+class Meal extends React.Component {
+  render() {
+    const meal = this.props.meal;
+    return (
+      <div className="Meal">
+        <img src={meal.image} alt={meal.title} />
+        <div>
+          <h5>{meal.title}</h5>
+          <small>{meal.calories}</small>
+        </div>
+        <form>
+          <input type="number" value="1" />
+          <button>+</button>
+        </form>
       </div>
-      <form>
-        <input type="text" />
-        <button>+</button>
-      </form>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Meal;
 

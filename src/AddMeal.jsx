@@ -7,24 +7,22 @@ import meals from './meals';
 
 class AddMeal extends React.Component {
   state = {
-    mealList: [],
-    newMeal: '',
     title: '',
-    calories: '',
+    calories: 0,
     image: ''
   };
 
   handleFormSubmission = (event) => {
     event.preventDefault();
 
-    this.setState({
-      newMeal: {
-        title: this.state.title,
-        calories: this.state.calories,
-        image: this.state.image
-      }
-    });
+    const newMeal = {
+      title: this.state.title,
+      calories: this.state.calories,
+      image: this.state.image
+    };
     console.log(this.state.newMeal);
+
+    this.props.onAddNewMeal(newMeal);
   };
 
   handleInputChange = (event) => {
@@ -32,10 +30,8 @@ class AddMeal extends React.Component {
     const name = event.target.name;
 
     this.setState({
-      [name] : value
-    })
-     
-
+      [name]: value
+    });
   };
 
   render() {
@@ -73,7 +69,7 @@ class AddMeal extends React.Component {
           <button>Add Meal</button>
         </form>
 
-        <hr/>
+        <hr />
 
         <p>Title: {this.state.title}</p>
         <p>Calories: {this.state.calories}</p>
