@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Meal from './Meal';
+import SearchBar from './SearchBar';
 import MealList from './MealList';
 import AddMeal from './AddMeal';
 
@@ -8,7 +9,8 @@ import meals from './meals';
 
 class App extends React.Component {
   state = {
-    meals: meals
+    meals: meals,
+    search: ''
   };
 
   addNewMeal = (meal) => {
@@ -17,13 +19,27 @@ class App extends React.Component {
     });
   };
 
+  updateMealOnSearch = (search) => {
+    // const copyOfMeals = [...this.state.meals];
+    const filteredMeals = this.state.meals.filter((meal) => { 
+      return meal.title.toLowerCase().includes(search.toLowerCase())       
+    });    
+
+    this.setState({
+      meals: filteredMeals,
+      search: search
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>IronNutrition</h1>
+
+        <SearchBar onSearchMeal={this.updateMealOnSearch} />
+        
         {/* <button>Add New Meal</button> */}
 
-        {/* <SearchBar name="searchBar" input={this.keyword} /> */}
 
         <AddMeal onAddNewMeal={this.addNewMeal} />
 
